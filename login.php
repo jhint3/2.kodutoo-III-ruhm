@@ -16,44 +16,97 @@
 	$signupEmailError = "";
 	$signupEmail = "";
 	
-	//kas on üldse olemas
+	//kas on Ã¼ldse olemas
 	if (isset ($_POST["signupEmail"])) {
 		
 		// oli olemas, ehk keegi vajutas nuppu
-		// kas oli tühi
+		// kas oli tÃ¼hi
 		if (empty ($_POST["signupEmail"])) {
 			
-			//oli tõesti tühi
-			$signupEmailError = "See väli on kohustuslik";
+			//oli tÃµesti tÃ¼hi
+			$signupEmailError = "See vÃ¤li on kohustuslik";
 			
 		} else {
 				
-			// kõik korras, email ei ole tühi ja on olemas
+			// kÃµik korras, email ei ole tÃ¼hi ja on olemas
 			$signupEmail = $_POST["signupEmail"];
 		}
 		
 	}
 	
 	$signupPasswordError = "";
+	$signupPassword = "";
 	
-	//kas on üldse olemas
+	//kas on Ã¼ldse olemas
 	if (isset ($_POST["signupPassword"])) {
 		
 		// oli olemas, ehk keegi vajutas nuppu
-		// kas oli tühi
+		// kas oli tÃ¼hi
 		if (empty ($_POST["signupPassword"])) {
 			
-			//oli tõesti tühi
-			$signupPasswordError = "See väli on kohustuslik";
+			//oli tÃµesti tÃ¼hi
+			$signupPasswordError = "See vÃ¤li on kohustuslik";
 			
 		} else {
 			
-			// oli midagi, ei olnud tühi
+			// oli midagi, ei olnud tÃ¼hi
 			
-			// kas pikkus vähemalt 8
+			// kas pikkus vÃ¤hemalt 8
 			if (strlen ($_POST["signupPassword"]) < 8 ) {
 				
-				$signupPasswordError = "Parool peab olema vähemalt 8 tm pikk";
+				$signupPasswordError = "Parool peab olema vÃ¤hemalt 8 tm pikk";
+				
+			}
+			
+		}
+		
+	}
+	
+	//LOGIN
+	
+	$loginEmailError = "";
+	$loginEmail = "";
+	
+		//kas on Ã¼ldse olemas
+	if (isset ($_POST["loginEmail"])) {
+		
+		// oli olemas, ehk keegi vajutas nuppu
+		// kas oli tÃ¼hi
+		if (empty ($_POST["loginEmail"])) {
+			
+			//oli tÃµesti tÃ¼hi
+			$loginEmailError = "See vÃ¤li on kohustuslik";
+			
+		} else {
+				
+			// kÃµik korras, email ei ole tÃ¼hi ja on olemas
+			$loginEmail = $_POST["loginEmail"];
+		}
+		
+	}
+	
+	
+	$loginPasswordError = "";
+	$loginPassword = "";
+	
+	//kas on Ã¼ldse olemas
+	if (isset ($_POST["loginPassword"])) {
+		
+		// oli olemas, ehk keegi vajutas nuppu
+		// kas oli tÃ¼hi
+		if (empty ($_POST["loginPassword"])) {
+			
+			//oli tÃµesti tÃ¼hi
+			$loginPasswordError = "See vÃ¤li on kohustuslik";
+			
+		} else {
+			
+			// oli midagi, ei olnud tÃ¼hi
+			
+			// kas pikkus vÃ¤hemalt 8
+			if (strlen ($_POST["loginPassword"]) < 8 ) {
+				
+				$loginPasswordError = "Parool peab olema vÃ¤hemalt 8 tm pikk";
 				
 			}
 			
@@ -62,11 +115,41 @@
 	}
 	
 	
+	$loginPasswordError = "";
+	$loginPassword = "";
+	
+	//kas on Ã¼ldse olemas
+	if (isset ($_POST["loginPassword"])) {
+		
+		// oli olemas, ehk keegi vajutas nuppu
+		// kas oli tÃ¼hi
+		if (empty ($_POST["loginPassword"])) {
+			
+			//oli tÃµesti tÃ¼hi
+			$loginPasswordError = "See vÃ¤li on kohustuslik";
+			
+		} else {
+			
+			// oli midagi, ei olnud tÃ¼hi
+			
+			// kas pikkus vÃ¤hemalt 8
+			if (strlen ($_POST["loginPassword"]) < 8 ) {
+				
+				$loginPasswordError = "Parool peab olema vÃ¤hemalt 8 tm pikk";
+				
+			}
+			
+		}
+		
+	}
+	
+	
+	
 	$gender = "";
 	if(isset($_POST["gender"])) {
 		if(!empty($_POST["gender"])){
 			
-			//on olemas ja ei ole tühi
+			//on olemas ja ei ole tÃ¼hi
 			$gender = $_POST["gender"];
 		}
 	}
@@ -80,14 +163,14 @@
         )	
 		{
 		
-		// ühtegi viga ei ole, kõik vajalik olemas
+		// Ã¼htegi viga ei ole, kÃµik vajalik olemas
 		echo "salvestan...<br>";
 		echo "email ".$signupEmail."<br>";
 		echo "parool ".$_POST["signupPassword"]."<br>"; 
 		
 		$password = hash("sha512", $_POST["signupPassword"]);
 		
-		echo "räsi ".$password."<br>"; 
+		echo "rÃ¤si ".$password."<br>"; 
 		
 		//kutsun funktsiooni, et salvestada
 		signup($signupEmail, $password);
@@ -95,7 +178,7 @@
 	}
 	$notice = "";
 	
-	// mõlemad login vormi väljad on täidetud
+	// mÃµlemad login vormi vÃ¤ljad on tÃ¤idetud
 	if (   isset($_POST["loginEmail"])  &&
 	       isset($_POST["loginPassword"])  &&
 	       !empty($_POST["loginEmail"])  &&
@@ -119,12 +202,12 @@
 		<form method="POST">
 			
 			<label>E-post</label><br>
-			<input name="loginEmail" type="email">
+			<input name="loginEmail" type="email" value="<?=$loginEmail;?>" > <?php echo $loginEmailError; ?>
 			
 			<br><br>
 			
 			<label>Parool</label><br>
-			<input name="loginPassword" type="password">
+			<input placeholder="Parool" name="loginPassword" type="password"> <?php echo $loginPasswordError; ?>
 						
 			<br><br>
 			
@@ -137,7 +220,7 @@
 		<form method="POST">
 			
 			<label>E-post</label><br>
-			<input name="signupEmail" type="email" value="<?php echo $signupEmail; ?>" > <?php echo $signupEmailError; ?>
+			<input name="signupEmail" type="email" value="<?=$signupEmail;?>" > <?php echo $signupEmailError; ?>
 			
 			<br><br>
 			
@@ -171,7 +254,7 @@
 		
 		<select>
 	<option value="AF">Afghanistan</option>
-	<option value="AX">Åland Islands</option>
+	<option value="AX">Ã…land Islands</option>
 	<option value="AL">Albania</option>
 	<option value="DZ">Algeria</option>
 	<option value="AS">American Samoa</option>
@@ -350,11 +433,11 @@
 	<option value="PT">Portugal</option>
 	<option value="PR">Puerto Rico</option>
 	<option value="QA">Qatar</option>
-	<option value="RE">Réunion</option>
+	<option value="RE">RÃ©union</option>
 	<option value="RO">Romania</option>
 	<option value="RU">Russian Federation</option>
 	<option value="RW">Rwanda</option>
-	<option value="BL">Saint Barthélemy</option>
+	<option value="BL">Saint BarthÃ©lemy</option>
 	<option value="SH">Saint Helena, Ascension and Tristan da Cunha</option>
 	<option value="KN">Saint Kitts and Nevis</option>
 	<option value="LC">Saint Lucia</option>

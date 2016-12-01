@@ -9,7 +9,7 @@
 	}
 	
 	
-	//kas kasutaja tahab v‰lja logida
+	//kas kasutaja tahab v√§lja logida
 	// kas aadressireal on logout olemas
 	if (isset($_GET["logout"])) {
 		
@@ -41,18 +41,23 @@
 	
 ?>
 
+<h1>Data</h1>
+<p>
+	Tere tulemast <?=$_SESSION["userEmail"];?>!
+	<a href="?logout=1">Logi v√§lja</a>
+</p>
 
      
-		<h2>m‰rkmed</h2>
+<h2>m√§rkmed</h2>
 		
 		<form method="POST">
 			
-			<label>m‰rkus</label><br>
+			<label>m√§rkus</label><br>
 			<input name="note" type="text">
 			
 			<br><br>
 			
-			<label>v‰rv</label><br>
+			<label>v√§rv</label><br>
 			<input name="color" type="color">
 						
 			<br><br>
@@ -91,8 +96,8 @@
     
 	    $html .= "<tr>";
 	       $html .= "<th>id</th>";
-	       $html .= "<th>M‰rkus</th>";
-	       $html .= "<th>V‰rv</th>";
+	       $html .= "<th>M√§rkus</th>";
+	       $html .= "<th>V√§rv</th>";
 	    $html .= "</tr>";
 	
 	
@@ -112,13 +117,6 @@
 ?>
 
 
-
-<h1>Data</h1>
-<p>
-   TERE tulemast <?=$_SESSION["userEmail"];?>!
-   <a href="?logout=1">Logi v‰lja</a>
-   
-</p>
 
 
 
