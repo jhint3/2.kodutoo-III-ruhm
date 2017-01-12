@@ -114,9 +114,9 @@
 	foreach ($notes as $note) {
 		$html .= "<tr>";
 	       $html .= "<td>".$note->id."</td>";
-	       $html .= "<td>".$note->Automark."</td>";
-		   $html .= "<td>".$note->Rendikestvus."</td>";
-	       $html .= "<td>".$note->Värv."</td>";
+	       $html .= "<td>".$note->automark."</td>";
+		   $html .= "<td>".$note->rendikestvus."</td>";
+	       $html .= "<td>".$note->värv."</td>";
 	    $html .= "</tr>";
 				
 	}

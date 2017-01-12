@@ -167,33 +167,7 @@
 	
 	
 	
-	/*function sum($x, $y) {
-		
-		$answer = $x+$y;
-		
-		return $answer;
-	}
 	
-	function hello($firstname, $lastname) {
-		
-		return 
-		"Tere tulemast "
-		.$firstname
-		." "
-		.$lastname
-		."!";
-		
-	}
-	
-	echo sum(123123789523,1239862345);
-	echo "<br>";
-	echo sum(1,2);
-	echo "<br>";
-	
-	$firstname = "Joosep";
-	
-	echo hello($firstname, "Hint");
-	*/
 ?>
 
 
