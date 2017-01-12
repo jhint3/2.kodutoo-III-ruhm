@@ -86,7 +86,7 @@
 	}
 	
 	
-	function saveNote($note, $color) {
+	function saveInfo($automark, $rendikestvus, $värv) {
 		
 		$mysqli = new mysqli(
 		
@@ -96,10 +96,10 @@
 		$GLOBALS["database"]
 		
 		);
-		$stmt = $mysqli->prepare("INSERT INTO colorNotes (note, color) VALUES (?, ?)");
+		$stmt = $mysqli->prepare("INSERT INTO colorNotes (automark, rendikestvus, värv) VALUES (?, ?, ?)");
 		echo $mysqli->error;
 		
-		$stmt->bind_param("ss", $note, $color );
+		$stmt->bind_param("sss", $automark, $rendikestvus, $värv);
 		if ( $stmt->execute() ) {
 			echo "salvestamine õnnestus";	
 		} else {	
@@ -110,15 +110,16 @@
 	
 	function getAllNotes() {
 		
-		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"],  
-		$GLOBALS["database"]);
+		$mysqli = new mysqli(
+		$GLOBALS["serverHost"], 
+		$GLOBALS["serverUsername"], 
+		$GLOBALS["serverPassword"],  
+		$GLOBALS["database"]
+		);
 		
-		$stmt = $mysqli->prepare("
-		    SELECT id, note, color
-			FROM colorNotes
-		");
+		$stmt = $mysqli->prepare("SELECT id, automark, rendikestvus, värv FROM colorNotes");
 		
-		$stmt->bind_result($id, $note, $color);
+		$stmt->bind_result($id, $automark, $rendikestvus, $värv);
 		
 		$stmt->execute();
 		
@@ -131,8 +132,9 @@
 			
 			$object = new StdClass();
 			$object->id = $id;
-			$object->note = $note;
-			$object->noteColor = $color;
+			$object->automark = $automark;
+			$object->rendikestvus = $rendikestvus;
+			$object->värv = $värv;
 			
 			
 			array_push($result, $object);

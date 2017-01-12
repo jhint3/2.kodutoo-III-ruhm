@@ -18,23 +18,27 @@
 		header("Location: login.php");
 		exit();
 	}
-	if (   isset($_POST["note"])  &&
-	       isset($_POST["color"])  &&
-	       !empty($_POST["note"])  &&
-	       !empty($_POST["color"]) 
+	if (   isset($_POST["automark"])  &&
+	       isset($_POST["rendikestvus"])  &&
+		   isset($_POST["värv"])  &&
+	       !empty($_POST["automark"])  &&
+	       !empty($_POST["rendikestvus"])  &&
+		   !empty($_POST["värv"]) 
 	 ){
 	   
-	   $note = cleanInput($_POST["note"]);
+	   $note = cleanInput($_POST["automark"]);
 	   
-	   saveNote($_POST["note"], $_POST["color"]);
-	
+	   //Enam ei saa naiteks KickAssi scriptina jooksutada
+		
+		saveInfo($_POST["automark"], $_POST["rendikestvus"], $_POST["värv"]);
+		
 	}
 	
 	$notes = getAllNotes();
 	
-	echo "<pre>";
-	var_dump($notes);
-	echo "</pre>";
+	//echo "<pre>";
+	//var_dump($notes);
+	//echo "</pre>";
 
 	
 	
@@ -48,17 +52,22 @@
 </p>
 
      
-<h2>märkmed</h2>
+<h2>Autode rent</h2>
 		
 		<form method="POST">
 			
-			<label>märkus</label><br>
-			<input name="note" type="text">
+			<label>Auto mark</label><br>
+			<input name="automark" type="text">
+			
+			<br><br>
+			
+			<label>Rendi kestvus</label><br>
+			<input name="rendikestvus" type="text">
 			
 			<br><br>
 			
 			<label>värv</label><br>
-			<input name="color" type="color">
+			<input name="värv" type="text">
 						
 			<br><br>
 			
@@ -73,14 +82,14 @@
     //iga liikme kohta massiivis
 	foreach($notes as $n) {
 		
-		$style = 
-		   "width:100px;
-		   float:left;
-		   min-height:100px;
-		   border: 1px solid gray;
-		   background-color: " .$n->noteColor.";";
+		//$style = 
+		   //"width:100px;
+		   //float:left;
+		   //min-height:100px;
+		  // border: 1px solid gray;
+		   //background-color: " .$n->noteColor.";";
 		   
-		  echo "<p style =' ".$style." '>".$n->note."</p>";
+		 // echo "<p style =' ".$style." '>".$n->note."</p>";
 		
 	}
 
@@ -96,7 +105,8 @@
     
 	    $html .= "<tr>";
 	       $html .= "<th>id</th>";
-	       $html .= "<th>Märkus</th>";
+	       $html .= "<th>automark</th>";
+		   $html .= "<th>rendikestvus</th>";
 	       $html .= "<th>Värv</th>";
 	    $html .= "</tr>";
 	
@@ -104,8 +114,9 @@
 	foreach ($notes as $note) {
 		$html .= "<tr>";
 	       $html .= "<td>".$note->id."</td>";
-	       $html .= "<td>".$note->note."</td>";
-	       $html .= "<td>".$note->noteColor."</td>";
+	       $html .= "<td>".$note->Automark."</td>";
+		   $html .= "<td>".$note->Rendikestvus."</td>";
+	       $html .= "<td>".$note->Värv."</td>";
 	    $html .= "</tr>";
 				
 	}
